@@ -1,0 +1,39 @@
+.my-workout-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.start-workout {
+  margin-bottom: 20px;
+  font-size: 20px;
+  padding: 10px;
+  color: green;
+  border: 1px solid green;
+}
+
+.name-workout {
+  margin-bottom: 20px;
+}
+
+.sets {
+  margin-bottom: 20px;
+}
+
+.delete-exercise {
+  font-size: 20px;
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: red;
+  border: 1px solid red;
+  padding: 10px;
+}

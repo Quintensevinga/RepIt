@@ -1,0 +1,17 @@
+.navbar {
+  display: flex;
+  justify-content: space-around;
+  background-color:#D3D3D3;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0;
+}
+
+.navbar-button {
+  padding: 30px 20%;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}

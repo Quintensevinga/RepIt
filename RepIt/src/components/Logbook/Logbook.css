@@ -1,0 +1,49 @@
+h1 {
+  margin-left: 25px;
+  margin-bottom: 2px;
+}
+
+.logged-workouts {
+  overflow-y: scroll;
+}
+
+.workout-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  border: 1px solid #d3d3d3;
+  padding: 5px 0;
+}
+
+.workout-date {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 5px 15px;
+}
+
+.workout-date p {
+  margin: 0;
+  padding: 0;
+}
+
+.workout-info {
+  margin: 0;
+  padding: 0;
+}
+
+.workout-info h3 {
+  margin: 0;
+  padding: 0;
+}
+
+.workout-info p {
+  margin: 0;
+  padding: 0;
+}
+
+.month-year {
+  margin-bottom: 1px;
+  margin-left: 5px;
+}
