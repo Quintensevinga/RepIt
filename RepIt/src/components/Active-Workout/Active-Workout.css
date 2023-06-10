@@ -1,0 +1,46 @@
+
+.date {
+  display: flex;
+  justify-content: center;
+}
+
+.done-btn {
+  position: absolute;
+  right: 10px;
+  top: 25px;
+  border: none;
+}
+
+.name-workout-box {
+  margin: 25px 8px;
+  border: 1px solid black;
+}
+
+.name-workout {
+    margin-left: 10px;
+}
+
+.exercise-box {
+  margin: 25px 8px;
+  border: 1px solid black;
+}
+
+.name-exercise {
+  margin: 0;
+  margin-left: 10px;
+  margin-top: 5px;
+}
+
+.set-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0;
+}
+
+input {
+  width: 45px;
+  height: 20px;
+}
+

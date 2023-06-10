@@ -3,13 +3,23 @@ h1 {
   margin-bottom: 20px;
 }
 
+.flex-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.default-text {
+  margin-left: 8px;
+}
+
 .add-workout {
-  position: absolute;
-  top: 5px;
-  right: 5px;
+  margin-left: 85%;
+}
+
+.add-btn {
+  font-size: 55px;
   border: none;
   background-color: transparent;
-  font-size: 44px;
 }
 
 .made-workouts {
@@ -26,6 +36,7 @@ h1 {
   border-left: none;
   border-right: none;
   background-color: transparent;
+  width: 100%;
 }
 
 .workout-bar p {

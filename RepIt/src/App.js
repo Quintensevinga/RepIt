@@ -1,25 +1,41 @@
 import './App.css';
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import Logbook from './components/Logbook/Logbook';
 import Navbar from './components/Navbar/Navbar';
 import Workouts from './components/Workout-list/Workouts-list';
-// import MakeOrStartWorkout from './components/MakeOrStartWorkout/MakeOrStartWorkout';
+import MakeOrStartWorkout from './components/MakeOrStartWorkout/MakeOrStartWorkout';
+import ActiveWorkout from './components/Active-Workout/Active-Workout';
+import ContextProvider from './components/ContextProvider/ContextProvider';
+import {AppContext} from './components/ContextProvider/ContextProvider';
 
 
 function App() {
+  return (
+    <ContextProvider>
+      <AppContent />
+    </ContextProvider>
+  );
+}
 
-  const [isWorkoutPage, setIsWorkoutPage] = useState(false);
-
+function AppContent() {
+  const { currentView } = useContext(AppContext);
 
   return (
     <div>
-      {/* <MakeOrStartWorkout/> */}
-      {!isWorkoutPage ? (
-        <Logbook/>
-      ) : (
-        <Workouts /> 
+      {currentView === 'logbook' && (
+        <div>
+          <Logbook />
+          <Navbar />
+        </div>
       )}
-      <Navbar setIsWorkoutPage={setIsWorkoutPage} isWorkoutPage={isWorkoutPage} />
+      {currentView === 'workouts' && (
+        <div>
+          <Workouts />
+          <Navbar />
+        </div>
+      )}
+      {currentView === 'makeOrStart' && <MakeOrStartWorkout />}
+      {currentView === 'activeWorkout' && <ActiveWorkout />}
     </div>
   );
 }

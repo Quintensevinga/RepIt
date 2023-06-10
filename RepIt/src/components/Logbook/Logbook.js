@@ -1,11 +1,40 @@
-import React from 'react';
+import React, {useContext, useEffect} from 'react';
 import './Logbook.css';
+import { AppContext } from '../ContextProvider/ContextProvider';
 
 const Logbook = () => {
+    const { workouts, setWorkouts } = useContext(AppContext);
+
+    useEffect(() => {
+        fetch('http://localhost:3001/logbook')
+            .then((response) => response.json())
+            .then((data) => {
+                setWorkouts(data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    },[]);
+
     return (
         <div className="logbook">
             <h1>Logbook</h1>
             <div className="logged-workouts">
+                {workouts.map((workout) => (
+                    <div className='workout-container' key={workout._id}>
+                    <div className='workout-date'>
+                        <p>Mon</p>
+                        <p>5</p>
+                    </div>
+                    <div className='workout-info'>
+                        <h3>{workout.name}</h3>
+                            {workout.exercises.map((exercise) => (
+                                <p key={exercise._id}>{exercise.sets} x {exercise.exercise}</p>
+                        ))}
+                    </div>
+                </div> 
+                ))}
+                {/* mock html */}
                 <p className='month-year'>June 2023</p>
                 <div className='workout-container'>
                     <div className='workout-date'>

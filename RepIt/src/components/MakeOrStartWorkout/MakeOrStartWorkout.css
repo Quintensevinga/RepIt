@@ -6,13 +6,28 @@
   margin-right: 15px;
 }
 
+.back-btn {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+}
+
+.add-workout {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  border: none;
+  background-color: transparent;
+  font-size: 44px;
+}
+
 form {
   display: flex;
   flex-direction: column;
 }
 
 .start-workout {
-  margin-bottom: 20px;
+  margin: 30px 0;
   font-size: 20px;
   padding: 10px;
   color: green;
@@ -23,11 +38,17 @@ form {
   margin-bottom: 20px;
 }
 
+.ex-and-sets {
+  display: flex !important;
+  flex-direction: column !important;
+  width: 300px !important;
+}
+
 .sets {
   margin-bottom: 20px;
 }
 
-.delete-exercise {
+.delete-workout {
   font-size: 20px;
   position: absolute;
   bottom: 50px;
