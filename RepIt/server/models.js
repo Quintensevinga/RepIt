@@ -29,7 +29,23 @@ const WorkoutSchema = new mongoose.Schema({
   exercises: [ExerciseSchema],
 });
 
-
 const Workout = mongoose.model('Workout', WorkoutSchema);
-
 module.exports = Workout;
+
+const finishedWorkoutSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  exercises: [ExerciseSchema],
+  date: {
+    type: Date,
+    default: Date.now,
+  },
+});
+
+const FinishedWorkout = mongoose.model('FinishedWorkout', finishedWorkoutSchema);
+module.exports = FinishedWorkout;
+
+
+
