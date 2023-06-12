@@ -3,7 +3,7 @@ import './MakeOrStartWorkout.css';
 import { AppContext } from '../ContextProvider/ContextProvider';
 
 const MakeOrStartWorkout = () => {
-  const { addWorkout, changeView, workouts, setWorkouts, selectedWorkoutId } = useContext(AppContext);
+  const { addWorkout, changeView, workouts, setWorkouts, selectedWorkoutId, setWorkoutData } = useContext(AppContext);
   const [name, setName] = useState('');
   const [exercises, setExercises] = useState([{ exercise: '', sets: '' }]);
 
@@ -43,6 +43,8 @@ const MakeOrStartWorkout = () => {
         sets: parseInt(exercise.sets)
       }))
     };
+
+    setWorkoutData(workoutData);
     
     if (selectedWorkoutId) {
       fetch(`http://localhost:3001/workouts/${selectedWorkoutId}`, {

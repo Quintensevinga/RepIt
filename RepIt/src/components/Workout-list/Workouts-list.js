@@ -1,10 +1,26 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import './Workouts-list.css';
 import { AppContext } from '../ContextProvider/ContextProvider';
 
 const Workouts = () => {
-  const { workouts, changeView, setSelectedWorkoutId } = useContext(AppContext);
+  const { workouts, changeView, setSelectedWorkoutId, setWorkouts } = useContext(AppContext);
   
+  console.log(workouts);
+
+  useEffect(() => {
+    fetchWorkouts();
+  }, []);
+
+  const fetchWorkouts = async () => {
+    try {
+      const response = await fetch('http://localhost:3001/workouts'); 
+      const data = await response.json();
+      setWorkouts(data);
+    } catch (error) {
+      console.error('Error fetching workouts:', error);
+    }
+  };
+
   const handleClick = (newView) => {
     changeView(newView);
     setSelectedWorkoutId(null);
@@ -30,9 +46,6 @@ const Workouts = () => {
             <p>{workout.name}</p>
           </button>
         )))}
-        <button className='workout-bar'>
-          <p>Legs</p>
-        </button>
       </div>
     </div>
   );

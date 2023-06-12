@@ -7,19 +7,33 @@ const ContextProvider = ({ children }) => {
   const addWorkout = (workoutData) => {
     setWorkouts([...workouts, workoutData]);
   };
-
   //view 
   const [currentView, setCurrentView] = useState('logbook');
   const changeView = (newView) => {
     setCurrentView(newView);
   }
-
   // save workout id
   const [selectedWorkoutId, setSelectedWorkoutId] = useState(null);
 
-
+  // save finished workout id
+  const [finishedWorkoutId, setFinishedWorkoutId] = useState(null);
+  //
+  const [workoutData, setWorkoutData] = useState(null);
+  
   return (
-    <AppContext.Provider value={{ setWorkouts, addWorkout, workouts, changeView, currentView, selectedWorkoutId, setSelectedWorkoutId }}>
+    <AppContext.Provider value={{
+      setWorkouts,
+      addWorkout,
+      workouts,
+      changeView,
+      currentView,
+      selectedWorkoutId,
+      setSelectedWorkoutId,
+      setWorkoutData,
+      workoutData,
+      finishedWorkoutId,
+      setFinishedWorkoutId
+    }}>
       {children}
     </AppContext.Provider>
   )
