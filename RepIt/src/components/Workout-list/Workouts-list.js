@@ -5,12 +5,6 @@ import { AppContext } from '../ContextProvider/ContextProvider';
 const Workouts = () => {
   const { workouts, changeView, setSelectedWorkoutId, setWorkouts } = useContext(AppContext);
   
-  console.log(workouts);
-
-  useEffect(() => {
-    fetchWorkouts();
-  }, []);
-
   const fetchWorkouts = async () => {
     try {
       const response = await fetch('http://localhost:3001/workouts'); 
@@ -21,7 +15,11 @@ const Workouts = () => {
     }
   };
 
-  const handleClick = (newView) => {
+  useEffect(() => {
+    fetchWorkouts();
+  }, [workouts]);
+
+  const handleClickBack = (newView) => {
     changeView(newView);
     setSelectedWorkoutId(null);
   }
@@ -34,17 +32,17 @@ const Workouts = () => {
   return (
     <div className='flex-box'>
       <div className='add-workout'>
-        <button className='add-btn' onClick={() => handleClick('makeOrStart')} >+</button>
+        <button className='add-btn' onClick={() => handleClickBack('makeOrStart')} >+</button>
       </div>
-      <h1>Workouts</h1>
+      <h1 className='list-title'>Workouts</h1>
       <div className='made-workouts'>
         {workouts.length === 0 ? (
           <p className='default-text'>No workouts yet</p>
         ) : (
           workouts.map((workout) => (
             <button className='workout-bar' key={workout._id} value={workout._id} onClick={() => handleClickWorkout(workout._id)}>
-            <p>{workout.name}</p>
-          </button>
+              <p>{workout.name}<i className="fas fa-chevron-right"></i></p>
+            </button>
         )))}
       </div>
     </div>

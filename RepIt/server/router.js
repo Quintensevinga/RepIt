@@ -5,6 +5,8 @@ const router = new Router();
 
 router.get('/workouts', controllers.getAllWorkouts);
 
+router.get('/workouts/:id', controllers.getWorkoutById);
+
 router.post('/workout', controllers.createWorkout);
 
 router.post('/finishedWorkout', controllers.createFinishedWorkout);

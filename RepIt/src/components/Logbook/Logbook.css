@@ -1,10 +1,21 @@
+body .logbook {
+  margin-bottom: 80px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
 h1 {
   margin-left: 25px;
   margin-bottom: 2px;
 }
 
-.logged-workouts {
-  overflow-y: scroll;
+.month-year {
+  background-color: #f2f2f2;
+  font-style: italic;
+  width: 100%;
+  margin: 0;
+  padding: 2px;
+  margin-left: 2px;
 }
 
 .workout-container {
@@ -13,6 +24,7 @@ h1 {
   align-items: flex-start;
   border: 1px solid #d3d3d3;
   padding: 5px 0;
+  width: 100%;
 }
 
 .workout-date {
@@ -28,6 +40,14 @@ h1 {
   padding: 0;
 }
 
+.workout-date .day {
+  font-weight: 100;
+}
+
+.workout-date .day-number {
+  font-weight: 700;
+}
+
 .workout-info {
   margin: 0;
   padding: 0;
@@ -41,9 +61,7 @@ h1 {
 .workout-info p {
   margin: 0;
   padding: 0;
+  font-size:small;
 }
 
-.month-year {
-  margin-bottom: 1px;
-  margin-left: 5px;
-}
+

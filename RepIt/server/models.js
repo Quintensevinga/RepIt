@@ -1,5 +1,13 @@
 const mongoose = require('mongoose');
 
+mongoose.connect('mongodb://localhost:27017/RepIt', { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => {
+    console.log('Connected to MongoDB');
+  })
+  .catch((error) => {
+    console.error('Failed to connect to MongoDB:', error);
+  });
+
 const setSchema = new mongoose.Schema({
   weight: {
     type: Number,
@@ -30,7 +38,6 @@ const WorkoutSchema = new mongoose.Schema({
 });
 
 const Workout = mongoose.model('Workout', WorkoutSchema);
-module.exports = Workout;
 
 const finishedWorkoutSchema = new mongoose.Schema({
   name: {
@@ -45,7 +52,10 @@ const finishedWorkoutSchema = new mongoose.Schema({
 });
 
 const FinishedWorkout = mongoose.model('FinishedWorkout', finishedWorkoutSchema);
-module.exports = FinishedWorkout;
 
+module.exports = {
+  Workout,
+  FinishedWorkout,
+}
 
 

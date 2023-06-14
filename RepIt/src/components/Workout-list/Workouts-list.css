@@ -12,8 +12,18 @@ h1 {
   margin-left: 8px;
 }
 
+.list-title {
+  margin-left: 25px;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+}
+
 .add-workout {
-  margin-left: 85%;
+  position: absolute;
+  top: 0;
+  right: 10px;
+  z-index: 2;
 }
 
 .add-btn {
@@ -42,4 +52,10 @@ h1 {
 .workout-bar p {
   margin: 6px 0;
   margin-left: 5px;
+}
+
+.fa-chevron-right {
+  position: absolute;
+  right: 7px;
+  color: gray;
 }

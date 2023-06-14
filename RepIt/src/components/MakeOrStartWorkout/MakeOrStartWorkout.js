@@ -1,9 +1,11 @@
 import React, { useContext, useState, useEffect } from 'react';
 import './MakeOrStartWorkout.css';
 import { AppContext } from '../ContextProvider/ContextProvider';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 const MakeOrStartWorkout = () => {
-  const { addWorkout, changeView, workouts, setWorkouts, selectedWorkoutId, setWorkoutData } = useContext(AppContext);
+  const { addWorkout, changeView, workouts, setWorkouts, selectedWorkoutId, setWorkoutData, setSelectedWorkoutId } = useContext(AppContext);
   const [name, setName] = useState('');
   const [exercises, setExercises] = useState([{ exercise: '', sets: '' }]);
 
@@ -13,7 +15,7 @@ const MakeOrStartWorkout = () => {
       setName(selectedWorkout.name);
       setExercises(selectedWorkout.exercises);
     } 
-  }, [selectedWorkoutId, workouts]);
+  }, [selectedWorkoutId]);
 
   const handleExerciseChange = (index, exOrSet, value) => {
     const updatedExercises = [...exercises];
@@ -46,7 +48,7 @@ const MakeOrStartWorkout = () => {
 
     setWorkoutData(workoutData);
     
-    if (selectedWorkoutId) {
+    if (selectedWorkoutId !== null) {
       fetch(`http://localhost:3001/workouts/${selectedWorkoutId}`, {
         method: 'PUT',
         headers: {
@@ -90,6 +92,9 @@ const MakeOrStartWorkout = () => {
             console.log('Workout created');
             console.log(workoutData);
             addWorkout(workoutData);
+            response.json().then((data) => {
+              setSelectedWorkoutId(data._id);
+            });
           } else {
             throw new Error('Failed to create workout');
           }
@@ -132,23 +137,23 @@ const MakeOrStartWorkout = () => {
           <button
             className='back-btn'
             onClick={(e) => {
-              handleClick('workouts');
               handleSubmit(e);
+              handleClick('workouts');
             }}
           >
-            back
+          <i className="fas fa-chevron-left"></i>
           </button>
           <button
             className='start-workout'
             onClick={(e) => {
-              handleClick('activeWorkout');
               handleSubmit(e);
+              handleClick('activeWorkout');
             }}
           >
-            Start This Workout
+            START THIS WORKOUT
           </button>
           <input
-            className='name-workout'
+            className='nme-workout'
             placeholder='Name Workout'
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -157,25 +162,32 @@ const MakeOrStartWorkout = () => {
           {exercises.map((exercise, index) => (
             <div className='ex-and-sets' key={index}>
               <input
+                className='exercise'
                 placeholder='Exercise'
                 value={exercise.exercise}
                 onChange={(e) => handleExerciseChange(index, 'exercise', e.target.value)}
               />
               <input
                 className='sets'
-                placeholder='0 sets'
+                placeholder='Number of sets (e.g., 3)'
                 value={exercise.sets}
                 onChange={(e) => handleExerciseChange(index, 'sets', e.target.value)}
               />
+              <FontAwesomeIcon icon={faTrashAlt} className='trash-small' />
             </div>
           ))}
-          <button className='add-exercise' onClick={handleAddExercise}>
-            Add Exercise
-          </button>
+          <div className='add-ex-box'>
+            <button className='add-exercise' onClick={handleAddExercise}>
+              Add Exercise
+            </button>
+          </div>
         </form>
-        <button className='delete-workout' onClick={handleDelete}>
-          Delete Workout
-        </button>
+        <div className='delete-box'>
+          <button className='delete-wo' onClick={handleDelete}>
+            DELETE THIS WORKOUT
+            <FontAwesomeIcon icon={faTrashAlt} className='delete-icon' />
+          </button>
+        </div>
       </div>
     </div>
   );

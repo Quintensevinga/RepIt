@@ -1,5 +1,4 @@
-const Workout = require('./models');
-const FinishedWorkout = require('./models');
+const {Workout, FinishedWorkout} = require('./models');
 
 exports.getAllWorkouts = async (ctx) => {
   try {
@@ -10,6 +9,19 @@ exports.getAllWorkouts = async (ctx) => {
     ctx.body = { error: 'Failed getting all workouts' };
   }
 }
+
+exports.getWorkoutById = async (ctx) => {
+  try {
+    const workout = await Workout.findById(ctx.params.id);
+    if (!workout) {
+      ctx.throw(404, 'Workout not found');
+    }
+    ctx.body = workout;
+  } catch (error) {
+    console.log(error);
+    ctx.throw(500, 'Server error');
+  }
+};
 
 exports.createWorkout = async (ctx) => {
   try {
